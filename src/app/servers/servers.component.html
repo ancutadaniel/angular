@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <h3>Servers</h3>
+        <!-- Property binding 
+            1) bind disabled to allow allowNewServers use [] make disabled fct dynamic   
+            2) [] means we are using property binding and disabled HTML attribute  
+            3) [] we are directly binding to this native property ex: disabled  
+            4) for disable we use an expression witch resolved to boolean
+            5) for other attribute another type may be required   
+        -->
+        <!-- Event binding 
+            1) We add () 
+            2) We add the event like click no "onClick"
+        -->
+        <button type="button" class="btn btn-primary" [disabled]="!allowNewServers" (click)="onCreateServer()">Add
+            Server
+        </button>
+
+        <!-- String interpolation -->
+        <p>{{allowNewServers}}</p>
+
+        <!-- Property binding -->
+        <p [innerText]="allowNewServers"></p>
+    </div>
+</div>
+
+<hr>
+<div class="container">
+    <div class="row">
+        <h3>Passing data using event binding</h3>
+        <!-- String interpolation -->
+        <p>{{serverCreationStatus}}</p>
+
+        <!-- Passing data using event binding 
+            1) $event is reserved variable name
+        -->
+        <label>Server Name</label>
+        <input type="text" class="form-control" (input)="onUpdateServerName($event)">
+    </div>
+</div>
+
+<hr>
+
+<!-- Two way binding - directives
+    1) we combine property and event binding
+    2) we combine the syntaxes [()] square and parentheses
+    3) we use special directive like ngModel
+-->
+<div class="container">
+    <div class="row">
+        <h3>Two way binding - directives</h3>
+        <label>Server Name Two way Binding</label>
+        <input type="text" class="form-control" [(ngModel)]="serverName">
+        <p>{{serverName}}</p>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    <div class="row">
+        <h3>Two way binding - directives ngModel</h3>
+        <label>Username</label>
+        <input type="text" class="form-control" [(ngModel)]="username">
+        <p>{{username}}</p>
+        <button type="submit" class="btn btn-primary" [disabled]="!username" (click)="onResetUser()">Reset
+            Username</button>
+
+    </div>
+</div>
+<hr>
+
+<!-- Directives 
+    * at the beginning of directive show that is a structural directive
+      ng-template mark place in the DOM where we add conditionally
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Two way binding - directives *ngIf - structural directive</h3>
+            <button type="button" class="btn btn-primary" [disabled]="serverName === ''"
+                (click)="onCreateServer()">Create Server</button>
+            <p *ngIf="serverCreated">Server was created, server name: {{serverName}}</p>
+        </div>
+        <div class="col-xs-12">
+            <h3>Two way binding - directives *ngIf else - conditional binding with local reference "#"</h3>
+            <h4> Replace conditionally no server with server name</h4>
+            <p *ngIf="serverCreated; else noServer">Server was created, server name: {{serverName}}</p>
+            <ng-template #noServer>
+                <p>No server was created</p>
+            </ng-template>
+            <button type="button" class="btn btn-primary" [disabled]="serverName === ''"
+                (click)="onCreateServer()">Create Server</button>
+        </div>
+    </div>
+</div>
+<hr>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Dynamic Styles - directives *ngStyle attribute directive</h3>
+            <app-server></app-server>
+        </div>
+        <div class="col-xs-12">
+            <h3>Dynamic Styles - directives *ngClass attribute directive</h3>
+            <app-server></app-server>
+        </div>
+    </div>
+</div> -->
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>List of servers *ngFor directive</h4>
+            <app-server *ngFor="let server of servers"></app-server>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-primary" (click)="onClick()">Display Details</button>
+            <p *ngIf="showPassword">Secret Password = tuna</p>
+            <p *ngFor="let content of buttonsClick; let idx = index"
+                [ngStyle]="{backgroundColor: idx >= 4 ? 'green' : ''}" [ngClass]="{huge: idx >= 4}">{{content}}</p>
+        </div>
+    </div>
+</div>
+<hr>

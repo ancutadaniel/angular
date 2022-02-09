@@ -1,0 +1,36 @@
+<!-- String interpolation -->
+<!-- <p>{{ 'Server' }} with id: {{ serverId }} is: {{ serverStatus }}</p> -->
+
+<section [ngStyle]="{backgroundColor: '#c2c2c2'}">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>ngStyle</h2>
+                <h4>ngStyle is built in directive and we use property binding on this [ngStyle]</h4>
+                <h5>[] indicate that we want to bind to this directive</h5>
+                <p [ngStyle]="{backgroundColor: getColor()}">{{ 'Server' }} with id: {{ serverId }} is: {{
+                    getServerStatus()
+                    }}</p>
+                <!-- call a method -->
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>ngStyle && ngClass</h2>
+                <h4>ngStyle is built in directive and we use property binding on this [ngClass]</h4>
+                <h5>[] indicate that we want to bind to this directive</h5>
+                <h5>we dynamic add or remove a class like online</h5>
+                <p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{online: serverStatus=== 'online'}">{{ 'Server'
+                    }}
+                    with id: {{ serverId }} is: {{
+                    getServerStatus()
+                    }}</p>
+                <!-- call a method -->
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
